@@ -73,6 +73,10 @@ import webix from "/public/svg/skills/webix.svg";
 import wolframalpha from "/public/svg/skills/wolframalpha.svg";
 import wordpress from "/public/svg/skills/wordpress.svg";
 import node from "/public/svg/skills/nodejs.svg";
+import expressjs from "/public/svg/skills/expressjs.svg";
+import nest from "/public/svg/skills/nest.svg";
+import telegram from "/public/svg/skills/telegram.svg";
+import sass from "/public/svg/skills/sass.svg";
 
 export const skillsImage = (skill) => {
   const skillID = skill.toLowerCase();
@@ -83,6 +87,14 @@ export const skillsImage = (skill) => {
       return html;
     case "node js":
       return node;
+    case "expressjs":
+      return expressjs;
+    case "nestjs":
+      return nest;
+    case "telegram bot":
+      return telegram;
+    case "sass":
+      return sass;
     case "photoshop":
       return photoshop;
     case "docker":
@@ -104,6 +116,8 @@ export const skillsImage = (skill) => {
     case "nuxt js":
       return nuxtJS;
     case "react":
+      return react;
+    case "react native":
       return react;
     case "svelte":
       return svelte;

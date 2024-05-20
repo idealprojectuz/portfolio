@@ -48,7 +48,7 @@ function Skills() {
                       <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
                     </div>
                   </div>
-                  <div className="flex flex-col items-center justify-center gap-3 p-6">
+                  <div className="flex flex-col items-center justify-center gap-3 p-6 w-[171px]">
                     <div className="h-8 sm:h-10">
                       <Image
                         src={skillsImage(skill)?.src}
