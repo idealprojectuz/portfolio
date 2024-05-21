@@ -7,6 +7,7 @@ import Experience from "./components/homepage/experience";
 import HeroSection from "./components/homepage/hero-section";
 import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
+import { GraphQLClient, gql } from "graphql-request";
 
 async function getData() {
   // const res = await fetch(
@@ -33,16 +34,42 @@ ahoy_visitor=3fc23eae-f445-4501-84f4-df19d4f29d18; ahoy_visit=5f8b1023-3a2b-421e
   return filtered;
 }
 
+const portfolio = async () => {
+  const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+
+  const graphQLClient = new GraphQLClient(endpoint, {
+    headers: {
+      authorization: "Bearer " + process.env.NEXT_PUBLIC_HYGRAPH_TOKEN,
+    },
+  });
+  const query = gql`
+    query Portfolios {
+      portfolios(where: { createdBy: {} }) {
+        createdAt
+        id
+        publishedAt
+        slug
+        title
+        updatedAt
+      }
+    }
+  `;
+
+  const data = await graphQLClient.request(query);
+  return data;
+  // console.log(graphQLClient);
+};
+
 export default async function Home() {
   const blogs = await getData();
-
+  const portfoliodata = await portfolio();
   return (
     <>
       <HeroSection />
       <AboutSection />
       <Experience />
       <Skills />
-      <Projects />
+      <Projects portfoliodata={portfoliodata} />
       <Education />
       <Blog blogs={blogs} />
       <ContactSection />
