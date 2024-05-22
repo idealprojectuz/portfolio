@@ -45,12 +45,20 @@ const portfolio = async () => {
   const query = gql`
     query Portfolios {
       portfolios(where: { createdBy: {} }) {
-        createdAt
         id
-        publishedAt
         slug
         title
-        updatedAt
+        singlePhoto {
+          mimeType
+          url(
+            transformation: {
+              image: { resize: { fit: clip, height: 450, width: 720 } }
+              document: { output: { format: webp } }
+              validateOptions: false
+            }
+          )
+        }
+        createdAt
       }
     }
   `;
@@ -69,7 +77,7 @@ export default async function Home() {
       <AboutSection />
       <Experience />
       <Skills />
-      <Projects portfoliodata={portfoliodata} />
+      <Projects portfoliodata={portfoliodata.portfolios} />
       <Education />
       <Blog blogs={blogs} />
       <ContactSection />
