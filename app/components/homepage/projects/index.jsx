@@ -7,7 +7,6 @@ import AnimationLottie from "../../helper/animation-lottie";
 import { PortfolioCard } from "./portfolio-card";
 
 const Projects = ({ portfoliodata }) => {
-  console.log(portfoliodata);
   return (
     <div id="projects" className="relative z-50  my-12 lg:my-24">
       <div className="sticky top-10">
@@ -21,7 +20,7 @@ const Projects = ({ portfoliodata }) => {
       </div>
 
       <div className="pt-24">
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid xl:grid-cols-4 grid-cols-2 gap-6">
           {portfoliodata.map((project, index) => (
             <PortfolioCard project={project} key={index} />
           ))}
